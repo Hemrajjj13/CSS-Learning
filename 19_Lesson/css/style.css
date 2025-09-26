@@ -124,6 +124,14 @@ footer {
   display: block;
 }
 
+.card p::after {
+  content: open-quote;
+}
+
+.card p::before {
+  content: close-quote;
+}
+
 
 /* || SMALL */
 @media screen and (min-width: 576px) {
