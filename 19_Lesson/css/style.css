@@ -26,17 +26,19 @@ html {
 body {
   font: 1.5rem "Nunito", sans-serif;
   min-height: 100vh;
-  background-color: #254c84;
+  background-color: #475569;
   background-image: radial-gradient(whitesmoke, #475569);
   display: flex;
   flex-direction: column;
 }
 
-header, footer {
+header,
+footer {
   position: sticky;
   background-color: #1e293b;
   color: whitesmoke;
   text-align: center;
+  z-index: 1;
 }
 
 header {
@@ -56,7 +58,7 @@ nav a:any-link {
   color: #000;
 }
 
-nav :is(a:hover,a:focus) {
+nav :is(a:hover, a:focus) {
   color: hsla(0, 0%, 20%, 0.6);
 }
 
@@ -108,7 +110,7 @@ footer {
   border: 10px solid red;
 }
 
-.card:nth-child(odd) {
+.card:nth-child(even) {
   background-color: papayawhip;
 }
 
@@ -120,18 +122,33 @@ footer {
 }
 
 .card figcaption::after {
-  content: ' 💫';
+  content: '✨';
   display: block;
 }
 
-.card p::after {
-  content: open-quote;
+.card figcaption::first-letter {
+  font-size: 3rem;
+}
+
+.card p {
+  position: relative;
 }
 
 .card p::before {
-  content: close-quote;
+  content: open-quote;
+  font-size: 3em;
+  position: absolute;
+  top: -0.25em;
+  left: -0.5em;
 }
 
+.card p::after {
+  content: close-quote;
+  font-size: 3em;
+  position: absolute;
+  top: -0.25em;
+  right: -0.5em;
+}
 
 /* || SMALL */
 @media screen and (min-width: 576px) {
@@ -140,9 +157,11 @@ footer {
     flex-flow: row wrap;
     padding: 1rem;
   }
+
   .card {
     width: min(100%, 400px);
   }
+
   .card:last-child {
     order: -1;
   }
@@ -153,12 +172,15 @@ footer {
   nav {
     display: none;
   }
+
   .card {
     width: min(100%, 325px);
   }
+
   .card figure {
     flex-flow: column-reverse;
   }
+
   .card p {
     margin-top: 1rem;
   }
@@ -169,6 +191,7 @@ footer {
   .card {
     width: min(100%, 400px);
   }
+
   .card:nth-child(2) {
     order: -1;
   }
@@ -201,8 +224,7 @@ footer {
     width: min(calc(33% - 0.25rem), 200px);
   }
 
-  .card figcaption,
-  .card p {
+  .card :is(figcaption, p) {
     font-size: 1.25rem;
   }
 }
